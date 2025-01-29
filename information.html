@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information</title>
+    <link rel="stylesheet" href="styles/information.css">
+</head>
+<body>
+    <div class="home-btn">
+        <button onclick="handleHome()">🏠</button>
+    </div>
+    <div class="theme-switch">
+        <div class="toggle-switch">
+            <label class="switch-label">
+                <input type="checkbox" class="checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+    <div class="card information-card">
+        <h2 class="card-title">Information</h2>
+        <p class="card-content">
+            <span class="info-line">
+                Hi, I'm <span class="info-emphasis">Yuvraj Singh Shekhawat</span> 👋
+            </span>
+            <span class="info-line">
+                A passionate <span class="info-emphasis"><span id="age">19</span>-year-old</span> developer from India 🚀
+                <span class="age-details">
+                    (<span id="years">0</span>y <span id="months">0</span>m <span id="days">0</span>d 
+                    <span id="hours">0</span>h <span id="minutes">0</span>m <span id="seconds">0</span>s)
+                </span>
+            </span>
+            <span class="info-line">
+                Currently pursuing <span class="info-emphasis">Computer Science and Engineering</span> 💻
+            </span>
+            <span class="info-line">
+                Aspiring developer <span class="info-note">(and getting better every day!)</span> ⚡
+            </span>
+            <span class="info-line">
+                Welcome to my corner of the web! Feel free to explore 🌟
+            </span>
+        </p>
+        <div class="card-footer">
+            <button class="card-button" onclick="handleGoBack()">Go Back</button>
+            <button class="card-button explore-btn" onclick="handleExplore()">Explore</button>
+            <button class="card-button projects-btn" onclick="handleProjects()">My Projects</button>
+        </div>
+    </div>
+    <div class="page-transition"></div>
+    <div class="hacker-transition">
+        <div class="console-container">
+            <div class="console-text"></div>
+        </div>
+    </div>
+    <div class="footer">
+        Made with <span class="heart">💖</span> By PoliteRhino
+    </div>
+    <script>
+        const checkbox = document.querySelector('.checkbox');
+        
+        checkbox.addEventListener('change', function() {
+            const isDarkMode = this.checked;
+            document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+            localStorage.setItem('darkMode', isDarkMode);
+        });
+
+        function handleGoBack() {
+            const transition = document.querySelector('.page-transition');
+            transition.classList.add('active');
+            
+            setTimeout(() => {
+                window.location.href = 'homepage.html';
+            }, 500);
+        }
+
+        function handleExplore() {
+            const transition = document.querySelector('.page-transition');
+            transition.classList.add('active');
+            
+            setTimeout(() => {
+                window.location.href = 'explore.html';
+            }, 500);
+        }
+
+        function handleProjects() {
+            const hackerTransition = document.querySelector('.hacker-transition');
+            const consoleText = document.querySelector('.console-text');
+            hackerTransition.classList.add('active');
+            
+            const texts = [
+                "Initializing project loader...",
+                "Accessing project database...",
+                "Decrypting project files...",
+                "Loading project interface...",
+                "Establishing secure connection...",
+                "Access granted. Welcome to my projects..."
+            ];
+            
+            let index = 0;
+            consoleText.innerHTML = '';
+            
+            function typeText() {
+                if (index < texts.length) {
+                    let text = texts[index];
+                    let charIndex = 0;
+                    
+                    function type() {
+                        if (charIndex < text.length) {
+                            consoleText.innerHTML += text.charAt(charIndex);
+                            charIndex++;
+                            setTimeout(type, 50); // Typing speed
+                        } else {
+                            consoleText.innerHTML += '<br><br>';
+                            index++;
+                            setTimeout(typeText, 500); // Delay between lines
+                        }
+                    }
+                    type();
+                } else {
+                    setTimeout(() => {
+                        window.location.href = 'projects.html';
+                    }, 1000);
+                }
+            }
+            
+            typeText();
+        }
+
+        // Check for stored theme on page load
+        window.addEventListener('load', () => {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                document.body.setAttribute('data-theme', 'dark');
+                checkbox.checked = true;
+            }
+        });
+
+        function calculateAge() {
+            const birthDate = new Date('2005-10-08T00:00:00');
+            const now = new Date();
+            
+            const diff = now - birthDate;
+            
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('age').textContent = years;
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        // Update every second
+        setInterval(calculateAge, 1000);
+        calculateAge(); // Initial calculation
+
+        function handleHome() {
+            const transition = document.querySelector('.page-transition');
+            transition.classList.add('active');
+            
+            setTimeout(() => {
+                window.location.href = 'homepage.html';
+            }, 500);
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <link rel="stylesheet" href="styles/projects.css">
+</head>
+<body data-theme="hacker">
+    <div class="home-btn">
+        <button onclick="handleHome()">🏠</button>
+    </div>
+    <div class="console-wrapper">
+        <div class="console-header">
+            <p class="console-line">Initializing project interface...</p>
+            <p class="console-line">Loading project data...</p>
+            <p class="console-line">Projects loaded successfully.</p>
+        </div>
+        
+        <div class="projects-container">
+            <!-- Project cards with typing animation -->
+            <div class="project-card">
+                <h3 class="project-title">Project Name</h3>
+                <p class="project-description">Project description goes here...</p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Project</a>
+                    <a href="#" class="project-link">Source Code</a>
+                </div>
+            </div>
+            <!-- Add more project cards as needed -->
+        </div>
+
+        <div class="button-container">
+            <button class="card-button back-btn" onclick="handleBack()">Go Back</button>
+        </div>
+    </div>
+
+    <script>
+        function handleBack() {
+            window.location.href = 'explore.html';
+        }
+
+        function handleHome() {
+            const hackerTransition = document.querySelector('.hacker-transition');
+            const consoleText = document.querySelector('.console-text');
+            hackerTransition.classList.add('active');
+            
+            // Matrix-style text animation
+            const text = "SYSTEM: Initiating return sequence...\nDECRYPTING: Home coordinates...\nSTATUS: Return protocol activated...";
+            let index = 0;
+            let currentText = '';
+            
+            function typeText() {
+                if (index < text.length) {
+                    currentText += text[index];
+                    consoleText.innerHTML = currentText + '<span class="terminal-cursor">█</span>';
+                    index++;
+                    setTimeout(typeText, 30);
+                } else {
+                    setTimeout(() => {
+                        hackerTransition.style.background = 'transparent';
+                        setTimeout(() => {
+                            window.location.href = 'homepage.html';
+                        }, 300);
+                    }, 500);
+                }
+            }
+            
+            typeText();
+        }
+    </script>
+</body>
+</html>

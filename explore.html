@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore</title>
+    <link rel="stylesheet" href="styles/explore.css">
+</head>
+<body>
+    <div class="home-btn">
+        <button onclick="handleHome()">🏠</button>
+    </div>
+    <div class="theme-switch">
+        <div class="toggle-switch">
+            <label class="switch-label">
+                <input type="checkbox" class="checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+    <div class="skills-container octagon-layout">
+        <!-- Center Card -->
+        <div class="skill-card discord-card center-card">
+            <div class="skill-icon">🤖</div>
+            <h3>Discord Bots</h3>
+            <p>Bot Development</p>
+            <ul class="skill-list">
+                <li>Custom Commands</li>
+                <li>Discord.js</li>
+                <li>API Integration</li>
+            </ul>
+        </div>
+
+        <!-- Surrounding Cards -->
+        <div class="skill-card html-card position-1">
+            <div class="skill-icon">🌐</div>
+            <h3>HTML & CSS</h3>
+            <p>Frontend Development</p>
+            <ul class="skill-list">
+                <li>Semantic HTML5</li>
+                <li>Modern CSS3</li>
+                <li>Responsive Design</li>
+            </ul>
+        </div>
+        
+        <div class="skill-card js-card position-2">
+            <div class="skill-icon">⚡</div>
+            <h3>JavaScript</h3>
+            <p>Dynamic Scripting</p>
+            <ul class="skill-list">
+                <li>ES6+ Features</li>
+                <li>DOM Manipulation</li>
+                <li>Async Programming</li>
+            </ul>
+        </div>
+
+        <div class="skill-card python-card position-3">
+            <div class="skill-icon">🐍</div>
+            <h3>Python</h3>
+            <p>Backend & Scripting</p>
+            <ul class="skill-list">
+                <li>Data Structures</li>
+                <li>Algorithms</li>
+                <li>Automation</li>
+            </ul>
+        </div>
+
+        <div class="skill-card cpp-card position-4">
+            <div class="skill-icon">⚙️</div>
+            <h3>C & C++</h3>
+            <p>System Programming</p>
+            <ul class="skill-list">
+                <li>Object Oriented</li>
+                <li>Memory Management</li>
+                <li>STL Libraries</li>
+            </ul>
+        </div>
+
+        <div class="skill-card mysql-card position-5">
+            <div class="skill-icon">🗄️</div>
+            <h3>MySQL</h3>
+            <p>Database Management</p>
+            <ul class="skill-list">
+                <li>Query Optimization</li>
+                <li>Database Design</li>
+                <li>CRUD Operations</li>
+            </ul>
+        </div>
+
+        <div class="skill-card apex-card position-6">
+            <div class="skill-icon">⚡</div>
+            <h3>APEX</h3>
+            <p>Salesforce Development</p>
+            <ul class="skill-list">
+                <li>Triggers & Classes</li>
+                <li>SOQL & SOSL</li>
+                <li>Lightning Components</li>
+            </ul>
+        </div>
+
+        <div class="skill-card tools-card position-7">
+            <div class="skill-icon">🛠️</div>
+            <h3>Dev Tools</h3>
+            <p>Development Environment</p>
+            <ul class="skill-list">
+                <li>Git & GitHub</li>
+                <li>VS Code</li>
+                <li>Command Line</li>
+            </ul>
+        </div>
+
+        <div class="skill-card cloud-card position-8">
+            <div class="skill-icon">☁️</div>
+            <h3>Cloud & DevOps</h3>
+            <p>Infrastructure</p>
+            <ul class="skill-list">
+                <li>Docker Basics</li>
+                <li>CI/CD Pipeline</li>
+                <li>Cloud Services</li>
+            </ul>
+        </div>
+    </div>
+    <div class="discord-invite">
+        <button class="card-button discord-btn" onclick="handleDiscordInvite()">
+            <span class="discord-icon">🎮</span>
+            <span class="discord-text">
+                Did you know I had a Discord server?
+                <span class="discord-highlight">CLICK ME</span> to know more!
+            </span>
+        </button>
+    </div>
+    <div class="button-container">
+        <button class="card-button back-btn" onclick="handleBack()">Go Back</button>
+    </div>
+    <div class="page-transition"></div>
+    <div class="hacker-transition">
+        <div class="console-container">
+            <div class="console-text"></div>
+        </div>
+    </div>
+    <div class="footer">
+        Made with <span class="heart">💖</span> By PoliteRhino
+    </div>
+    <script>
+        const checkbox = document.querySelector('.checkbox');
+        
+        checkbox.addEventListener('change', function() {
+            const isDarkMode = this.checked;
+            document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+            localStorage.setItem('darkMode', isDarkMode);
+        });
+
+        function handleBack() {
+            const transition = document.querySelector('.page-transition');
+            transition.classList.add('active');
+            
+            setTimeout(() => {
+                window.location.href = 'information.html';
+            }, 500);
+        }
+
+        function handleDiscordInvite() {
+            window.open('discord.html', 'Discord', 'width=1000,height=600');
+        }
+
+        function handleProjects() {
+            const hackerTransition = document.querySelector('.hacker-transition');
+            const consoleText = document.querySelector('.console-text');
+            hackerTransition.classList.add('active');
+            
+            const texts = [
+                "Initializing project loader...",
+                "Accessing project database...",
+                "Decrypting project files...",
+                "Loading project interface...",
+                "Establishing secure connection...",
+                "Access granted. Welcome to my projects..."
+            ];
+            
+            let index = 0;
+            consoleText.innerHTML = '';
+            
+            function typeText() {
+                if (index < texts.length) {
+                    let text = texts[index];
+                    let charIndex = 0;
+                    
+                    function type() {
+                        if (charIndex < text.length) {
+                            consoleText.innerHTML += text.charAt(charIndex);
+                            charIndex++;
+                            setTimeout(type, 50); // Typing speed
+                        } else {
+                            consoleText.innerHTML += '<br><br>';
+                            index++;
+                            setTimeout(typeText, 500); // Delay between lines
+                        }
+                    }
+                    type();
+                } else {
+                    // Add a slight delay before the final transition
+                    setTimeout(() => {
+                        consoleText.style.animation = 'glowAndFade 1s forwards';
+                        
+                        // Navigate after the glow effect
+                        setTimeout(() => {
+                            window.location.href = 'projects.html';
+                        }, 1000);
+                    }, 500);
+                }
+            }
+            
+            typeText();
+        }
+
+        // Check for stored theme on page load
+        window.addEventListener('load', () => {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                document.body.setAttribute('data-theme', 'dark');
+                checkbox.checked = true;
+            }
+        });
+
+        // Add this function to the script section
+        function handleHome() {
+            const transition = document.querySelector('.page-transition');
+            transition.classList.add('active');
+            
+            setTimeout(() => {
+                window.location.href = 'homepage.html';
+            }, 500);
+        }
+    </script>
+</body>
+</html> 

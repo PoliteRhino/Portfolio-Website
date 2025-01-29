@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="styles/homepage.css">
+</head>
+<body>
+    <div class="theme-switch">
+        <div class="toggle-switch">
+            <label class="switch-label">
+                <input type="checkbox" class="checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+    <div class="card">
+        <h2 class="card-title">PoliteRhino</h2>
+        <p class="card-content">
+            Get to know me more :D, Click the button below to learn more about me.
+        </p>
+        <div class="card-footer">
+            <button class="card-button" onclick="handleLearnMore()">Learn More</button>
+        </div>
+    </div>
+    <div class="page-transition"></div>
+    <div class="footer">
+        Made with <span class="heart">💖</span> By PoliteRhino
+    </div>
+    <script>
+        const checkbox = document.querySelector('.checkbox');
+        
+        checkbox.addEventListener('change', function() {
+            const isDarkMode = this.checked;
+            document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+            localStorage.setItem('darkMode', isDarkMode);
+        });
+
+        function handleLearnMore() {
+            const transition = document.querySelector('.page-transition');
+            transition.classList.add('active');
+            
+            // Store theme state before navigation
+            const isDarkMode = document.body.getAttribute('data-theme') === 'dark';
+            localStorage.setItem('darkMode', isDarkMode);
+            
+            // Navigate after transition
+            setTimeout(() => {
+                window.location.href = 'information.html';
+            }, 500);
+        }
+
+        // Check for stored theme on page load
+        window.addEventListener('load', () => {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                document.body.setAttribute('data-theme', 'dark');
+                checkbox.checked = true;
+            }
+        });
+    </script>
+</body>
+</html>
